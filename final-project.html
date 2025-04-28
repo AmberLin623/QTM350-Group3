@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.41">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Xinyi Wang (2549813)">
+<meta name="author" content="Amber Lin (2480631)">
+<meta name="author" content="Iris Wu (2515186)">
+<meta name="author" content="Krystal Li (2587957)">
+<meta name="author" content="Nora Ni (2599639)">
+
+<title>QTM 350 Final Project Report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="final-project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="final-project_files/libs/quarto-html/quarto.js"></script>
+<script src="final-project_files/libs/quarto-html/popper.min.js"></script>
+<script src="final-project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="final-project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="final-project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="final-project_files/libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="final-project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="final-project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="final-project_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#early-life-matters-shifting-impacts-of-under-5-mortality-and-adolescent-fertility-on-life-expectancy-1960s2020s." id="toc-early-life-matters-shifting-impacts-of-under-5-mortality-and-adolescent-fertility-on-life-expectancy-1960s2020s." class="nav-link active" data-scroll-target="#early-life-matters-shifting-impacts-of-under-5-mortality-and-adolescent-fertility-on-life-expectancy-1960s2020s.">Early Life Matters: Shifting Impacts of Under-5 Mortality and Adolescent Fertility on Life Expectancy, 1960s–2020s.</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a>
+  <ul class="collapse">
+  <li><a href="#data-merge-and-clean-with-sql" id="toc-data-merge-and-clean-with-sql" class="nav-link" data-scroll-target="#data-merge-and-clean-with-sql">Data Merge and Clean with SQL</a></li>
+  <li><a href="#data-cleaning-and-pre-processing" id="toc-data-cleaning-and-pre-processing" class="nav-link" data-scroll-target="#data-cleaning-and-pre-processing">Data Cleaning and Pre-processing</a></li>
+  <li><a href="#summary-of-key-variables" id="toc-summary-of-key-variables" class="nav-link" data-scroll-target="#summary-of-key-variables">Summary of Key Variables</a></li>
+  </ul></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#visual-analysis" id="toc-visual-analysis" class="nav-link" data-scroll-target="#visual-analysis">Visual Analysis</a></li>
+  </ul></li>
+  <li><a href="#results-and-discussion" id="toc-results-and-discussion" class="nav-link" data-scroll-target="#results-and-discussion">Results and Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="final-project.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">QTM 350 Final Project Report</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Xinyi Wang (2549813) </p>
+             <p>Amber Lin (2480631) </p>
+             <p>Iris Wu (2515186) </p>
+             <p>Krystal Li (2587957) </p>
+             <p>Nora Ni (2599639) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="early-life-matters-shifting-impacts-of-under-5-mortality-and-adolescent-fertility-on-life-expectancy-1960s2020s." class="level1" style="text-align: center;">
+<h1>Early Life Matters: Shifting Impacts of Under-5 Mortality and Adolescent Fertility on Life Expectancy, 1960s–2020s.</h1>
+</section>
+<p>This research investigates the extent to which under-5 mortality and adolescent fertility rates impact life expectancy, and how this impact has changed from the 1960s to the 2020s. The study also highlights whether the effect is different across income groups.</p>
+<hr>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In recent decades, global improvements in healthcare, education, and living standards have significantly reshaped life expectancy trends across countries. Yet the foundations of longevity are often set much earlier in life, during critical periods of childhood and adolescence. This study explores the relationship between two key early-life indicators—under-5 mortality and adolescent fertility—and life expectancy at birth, tracing how these relationships have evolved from the 1960s through the 2020s. By focusing on these early-life factors, we aim to better understand not only the immediate health risks faced by children and young mothers, but also the long-term implications for population health and societal development. Investigating these dynamics over a sixty-year span provides insight into how public health interventions, socio-economic progress, and changing demographic patterns have collectively shaped the prospects for a longer, healthier life.</p>
+<hr>
+</section>
+<section id="data-description" class="level1">
+<h1>Data Description</h1>
+<p>3 datasets:</p>
+<ol type="1">
+<li>Life Expectancy at Birth (SP.DYN.LE00.IN)</li>
+<li>Under-5 Mortality Rate (SH.DYN.MORT)</li>
+<li>Adolescent Fertility Rate (SP.ADO.TFRT)</li>
+</ol>
+<p>This study draws on three key datasets from the World Bank, covering global trends from the 1960s to the 2020s. The first, Life Expectancy at Birth (SP.DYN.LE00.IN), measures the average number of years a newborn is expected to live based on current mortality rates and serves as the primary outcome variable. The second, Under-5 Mortality Rate (SH.DYN.MORT), captures the number of deaths per 1,000 live births before age five, reflecting child health, nutrition, and healthcare access. The third, Adolescent Fertility Rate (SP.ADO.TFRT), measures the number of births per 1,000 women aged 15–19 and is often linked to educational and socio-economic conditions. Together, these datasets allow for a comprehensive analysis of how early-life factors have influenced life expectancy over time. To deepen the analysis, we also incorporated income group classifications for each observation to explore variations across different economic contexts.</p>
+<p>The dataset summarizes 11,536 observations on life expectancy, mortality rate, and adolescent fertility rate.</p>
+<ul>
+<li><p>The average life expectancy is about 65 years, ranging from 11 to 86 years.</p></li>
+<li><p>The under-5 mortality rate averages around 7%, with most countries falling between 2% and 11%, though some extreme cases reach as high as 77%.</p></li>
+<li><p>Adolescent fertility rates are generally low, averaging 7%, with most observations clustered between 3% and 11%.</p></li>
+</ul>
+<hr>
+<section id="data-merge-and-clean-with-sql" class="level3">
+<h3 class="anchored" data-anchor-id="data-merge-and-clean-with-sql">Data Merge and Clean with SQL</h3>
+<p>The three datasets were initially downloaded separately in CSV format from the World Bank DataBank portal.<br>
+Each dataset originally had a wide format, with country names and codes followed by annual observations across decades.</p>
+<p>The data processing involved several key merging steps:</p>
+<ul>
+<li><strong>Reshaping:</strong> Each dataset was transformed from wide to long format, creating a structure where each row corresponds to a single country-year observation.<br>
+This facilitated easier merging and analysis across multiple time points.</li>
+<li><strong>Aligning Identifiers:</strong> Using the country codes (<code>CountryCode</code>) and years (<code>Year</code>) as unique identifiers, the datasets were merged into a single cohesive dataset, ensuring that life expectancy, under-5 mortality, and adolescent fertility data were aligned for the same country and year.</li>
+<li><strong>Adding Contextual Information:</strong> An income group classification variable (<code>IncomeGroup</code>) was added based on World Bank standards (Low, Lower Middle, Upper Middle, High Income), providing a socio-economic dimension to the analysis.</li>
+</ul>
+<p>Through these steps, a unified panel dataset was constructed, allowing for time-series cross-sectional analysis across both indicators and countries.</p>
+<hr>
+</section>
+<section id="data-cleaning-and-pre-processing" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-and-pre-processing">Data Cleaning and Pre-processing</h3>
+<p>After merging, several cleaning and pre-processing operations were conducted to ensure the dataset was suitable for rigorous analysis:</p>
+<ul>
+<li><strong>Missing Data Handling:</strong> Rows with missing values in any of the three primary variables (life expectancy, under-5 mortality, adolescent fertility) were removed to perform a complete case analysis, minimizing bias from incomplete records.</li>
+<li><strong>Filtering Time Periods:</strong> Observations were kept only for years between 1960 and 2022 to ensure relevance and consistency across variables.</li>
+<li><strong>Creating Decade Categories:</strong> A new variable (<code>Decade</code>) was created by grouping years into their respective decades (e.g., 1960s, 1970s) to facilitate longitudinal comparisons and to observe temporal trends in health improvements.</li>
+<li><strong>Standardization of Variables:</strong><br>
+Within each income group, life expectancy, under-5 mortality, and adolescent fertility rates were standardized (mean = 0, standard deviation = 1).<br>
+This step allows comparisons of effect sizes across groups with different baseline health conditions, avoiding scale-driven biases in regression results.</li>
+<li><strong>Variable Renaming:</strong> For clarity and consistency, indicator variables were renamed: <code>LifeExpectancy</code>, <code>U5Mortality</code>, and <code>AdoleFertility</code>.</li>
+</ul>
+<p>These cleaning steps produced a structured, complete, and analysis-ready dataset.</p>
+<hr>
+</section>
+<section id="summary-of-key-variables" class="level3">
+<h3 class="anchored" data-anchor-id="summary-of-key-variables">Summary of Key Variables</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>Country</code></td>
+<td style="text-align: left;">Name of the country or territory</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>CountryCode</code></td>
+<td style="text-align: left;">ISO 3-letter code used for merging datasets</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Year</code></td>
+<td style="text-align: left;">Observation year (ranging from 1960 to 2022)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>LifeExpectancy</code></td>
+<td style="text-align: left;">Life expectancy at birth in years</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>U5Mortality</code></td>
+<td style="text-align: left;">Under-5 mortality rate (deaths per 1,000 live births)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>AdoleFertility</code></td>
+<td style="text-align: left;">Adolescent fertility rate (births per 1,000 women aged 15–19)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>IncomeGroup</code></td>
+<td style="text-align: left;">World Bank income group classification (Low, Lower Middle, Upper Middle, High Income)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Decade</code></td>
+<td style="text-align: left;">Decade label assigned based on the year</td>
+</tr>
+</tbody>
+</table>
+<p>The cleaned dataset contains approximately 11,500 valid country-year observations, offering rich temporal and geographic variation necessary for exploring global patterns in early-life health and longevity outcomes.</p>
+<hr>
+</section>
+</section>
+<section id="data-analysis" class="level1">
+<h1>Data Analysis</h1>
+<p>The analysis explored how early-life health indicators, specifically under-5 mortality and adolescent fertility, relate to life expectancy across different income groups over the period from the 1960s through the 2020s. The dataset used for this analysis underwent standardization for improved interpretability of results.</p>
+<p>Using regression analyses stratified by income group, the relationships between these indicators and life expectancy were quantified. Each subgroup analysis involved standardizing variables such as under-5 mortality (“U5Mortality”), adolescent fertility rates (“AdoleFertility”), and life expectancy (“LifeExpectancy”) to ensure comparability across different scales and groups. Results from these subgroup analyses indicated varying effect sizes across income groups. Specifically, higher income groups exhibited a generally weaker relationship between early-life indicators and life expectancy. In contrast, lower-income groups showed stronger negative relationships, underscoring how substantial reductions in child mortality and adolescent fertility rates significantly predict improvements in life expectancy.</p>
+<p>A standardized regression approach allowed a clearer visualization and interpretation of these effects, emphasizing how socio-economic context modifies these health relationships. Notably, reductions in under-5 mortality and adolescent fertility rates yielded more pronounced benefits in terms of increased life expectancy in low and middle-income countries compared to high-income countries.</p>
+<p>Visual examination of the regression outputs underscored that under-5 mortality had consistently strong negative associations with life expectancy across all groups, whereas adolescent fertility displayed variable impacts dependent on income level. This suggests targeted public health interventions addressing child health could universally enhance longevity, while adolescent health initiatives might require more tailored approaches depending on socio-economic context.</p>
+<p>These findings reinforce the critical importance of early-life interventions in determining population health outcomes, highlighting that strategic public health investments and policy frameworks focused on children and adolescents are vital to fostering long-term societal development and health equity.</p>
+<hr>
+<div id="9144816c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import the packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.ticker <span class="im">as</span> mtick</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0afe2ed4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import dataset and rename colomns for better readness</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'population_panel_clean.csv'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lifeexp"</span>: <span class="st">"LifeExpectancy"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"u5mort"</span>: <span class="st">"U5Mortality"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"adofert"</span>: <span class="st">"AdoleFertility"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<section id="visual-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="visual-analysis">Visual Analysis</h3>
+<section id="under-5-mortality-and-life-expectancy" class="level4">
+<h4 class="anchored" data-anchor-id="under-5-mortality-and-life-expectancy">Under-5 Mortality and Life Expectancy</h4>
+<p>We first examined the relationship between under-5 mortality and life expectancy.</p>
+<div id="95b9805d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot: Under-5 Mortality vs Life Expectancy</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">"U5Mortality"</span>, y<span class="op">=</span><span class="st">"LifeExpectancy"</span>, data<span class="op">=</span>df, scatter_kws<span class="op">=</span>{<span class="st">"color"</span>:<span class="st">"blue"</span>}, line_kws<span class="op">=</span>{<span class="st">"color"</span>:<span class="st">"black"</span>})</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation Between Under-5 Mortality and Life Expectancy"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Under-5 Mortality Rate (%)"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Life Expectancy at Birth (years)"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-project_files/figure-html/cell-4-output-1.png" width="504" height="488" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="30e2ad6c" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation between Under-5 Mortality and Life Expectancy</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'U5MortalityPercent'</span>] <span class="op">=</span> df[<span class="st">'U5Mortality'</span>] <span class="op">/</span> <span class="dv">10</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the plot style</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>, font_scale<span class="op">=</span><span class="fl">1.1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple scatter plot with regression line</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>sns.regplot(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"U5MortalityPercent"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"LifeExpectancy"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.3</span>, <span class="st">"s"</span>: <span class="dv">30</span>},</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"black"</span>},</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"blue"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles and labels</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation Between Under-5 Mortality and Life Expectancy"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Under-5 Mortality Rate (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Life Expectancy at Birth (years)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Format x-axis as percentage</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(mtick.PercentFormatter(xmax<span class="op">=</span><span class="dv">100</span>))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-project_files/figure-html/cell-5-output-1.png" width="940" height="556" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure 1.</p>
+<p>This figure illustrates the strong negative association between under-5 mortality rates and life expectancy at birth across countries.</p>
+<hr>
+</section>
+<section id="under-5-mortality-vs-life-expectancy-across-decades" class="level4">
+<h4 class="anchored" data-anchor-id="under-5-mortality-vs-life-expectancy-across-decades">Under-5 Mortality vs Life Expectancy Across Decades</h4>
+<p>We further explored how the relationship evolved over different decades.</p>
+<div id="52ea0d38" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation between Under-5 Mortality and Life Expectancy by Year</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create decade column</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'decade'</span>] <span class="op">=</span> (df[<span class="st">'year'</span>] <span class="op">//</span> <span class="dv">10</span>) <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up FacetGrid</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df, col<span class="op">=</span><span class="st">"decade"</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, height<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    sns.regplot,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"U5MortalityPercent"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"LifeExpectancy"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.3</span>, <span class="st">"s"</span>: <span class="dv">30</span>},</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"black"</span>}</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>g.set_axis_labels(<span class="st">"Under-5 Mortality Rate (%)"</span>, <span class="st">"Life Expectancy (years)"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>g.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">s"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>g.<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">100</span>))  <span class="co"># limit x-axis for consistency</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(mtick.PercentFormatter(xmax<span class="op">=</span><span class="dv">100</span>))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Under-5 Mortality vs Life Expectancy Across Decades"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, y<span class="op">=</span><span class="fl">1.05</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-project_files/figure-html/cell-6-output-1.png" width="1519" height="808" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure 2.</p>
+<p>This figure shows that the negative association between under-5 mortality and life expectancy remained consistent across all decades but became tighter over time as global mortality rates declined.</p>
+<hr>
+</section>
+<section id="adolescent-fertility-and-life-expectancy" class="level4">
+<h4 class="anchored" data-anchor-id="adolescent-fertility-and-life-expectancy">Adolescent Fertility and Life Expectancy</h4>
+<p>We also examined the correlation between adolescent fertility rates and life expectancy.</p>
+<div id="c22793f3" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation between Adolescent Fertility and Life Expectancy</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'AdoleFertilityPercent'</span>] <span class="op">=</span> df[<span class="st">'AdoleFertility'</span>] <span class="op">/</span> <span class="dv">10</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the plot style</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>, font_scale<span class="op">=</span><span class="fl">1.1</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple scatter plot with regression line</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>sns.regplot(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"AdoleFertilityPercent"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"LifeExpectancy"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.3</span>, <span class="st">"s"</span>: <span class="dv">30</span>},</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"red"</span>},</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"pink"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Titles and labels</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Correlation Between Adolescent Fertility and Life Expectancy"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Adolescent Fertility Rate (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Life Expectancy at Birth (years)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Format x-axis as percentage</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(mtick.PercentFormatter(xmax<span class="op">=</span><span class="dv">100</span>))</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-project_files/figure-html/cell-7-output-1.png" width="940" height="556" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure 3.</p>
+<p>This figure highlights a weaker but still negative association between adolescent fertility rates and life expectancy.</p>
+<hr>
+</section>
+<section id="adolescent-fertility-vs-life-expectancy-across-decades" class="level4">
+<h4 class="anchored" data-anchor-id="adolescent-fertility-vs-life-expectancy-across-decades">Adolescent Fertility vs Life Expectancy Across Decades</h4>
+<p>We analyzed whether the relationship between adolescent fertility and life expectancy changed across decades.</p>
+<div id="44a8e599" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation between Adolescent Fertility and Life Expectancy by Year</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create decade column</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'decade'</span>] <span class="op">=</span> (df[<span class="st">'year'</span>] <span class="op">//</span> <span class="dv">10</span>) <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up FacetGrid</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df, col<span class="op">=</span><span class="st">"decade"</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, height<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    sns.regplot,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"AdoleFertilityPercent"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"LifeExpectancy"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.3</span>, <span class="st">"s"</span>: <span class="dv">30</span>},</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"red"</span>}</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>g.set_axis_labels(<span class="st">"Adolescent Fertility Rate (%)"</span>, <span class="st">"Life Expectancy (years)"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>g.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">s"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>g.<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">100</span>))  <span class="co"># limit x-axis for consistency</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(mtick.PercentFormatter(xmax<span class="op">=</span><span class="dv">100</span>))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Adolescent Fertility vs Life Expectancy Across Decades"</span>, fontsize<span class="op">=</span><span class="dv">16</span>, y<span class="op">=</span><span class="fl">1.05</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-project_files/figure-html/cell-8-output-1.png" width="1518" height="808" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure 4.</p>
+<p>This figure shows that the negative relationship between adolescent fertility and life expectancy persisted across decades, but the association was weaker and more variable than under-5 mortality.</p>
+<hr>
+</section>
+<section id="standardized-coefficients" class="level4">
+<h4 class="anchored" data-anchor-id="standardized-coefficients">Standardized Coefficients</h4>
+<p>To better compare effects, we standardized the variables and ran regressions.</p>
+<div id="90c5335b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare whether Adolescent fertility or U-5 mortality correlates more with life expectancy using standardized coefficients </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop missing values (if any)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df.dropna(subset<span class="op">=</span>[<span class="st">"LifeExpectancy"</span>, <span class="st">"U5Mortality"</span>, <span class="st">"AdoleFertility"</span>])</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define features and target</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_clean[[<span class="st">"U5Mortality"</span>, <span class="st">"AdoleFertility"</span>]]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_clean[<span class="st">"LifeExpectancy"</span>]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize predictors and target</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>scaler_X <span class="op">=</span> StandardScaler()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>scaler_y <span class="op">=</span> StandardScaler()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler_X.fit_transform(X)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>y_scaled <span class="op">=</span> scaler_y.fit_transform(y.values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)).flatten()</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the linear regression model</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>model.fit(X_scaled, y_scaled)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataframe for standardized coefficients</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>coef_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Indicator"</span>: [<span class="st">"Under-5 Mortality"</span>, <span class="st">"Adolescent Fertility"</span>],</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Standardized Coefficient"</span>: model.coef_</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>}).sort_values(by<span class="op">=</span><span class="st">"Standardized Coefficient"</span>, key<span class="op">=</span><span class="bu">abs</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>, font_scale<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> sns.barplot(</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>coef_df,</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"Indicator"</span>,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"Standardized Coefficient"</span>,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    palette<span class="op">=</span>[<span class="st">"blue"</span>, <span class="st">"pink"</span>]</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Add values on bars</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar <span class="kw">in</span> bars.patches:</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> bar.get_height()</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    bars.annotate(<span class="ss">f"</span><span class="sc">{</span>height<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>                  xy<span class="op">=</span>(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, height),</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>                  xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>                  textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>                  ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Final touches</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Standardized Coefficients: Predictors of Life Expectancy"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Standardized Coefficient"</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">""</span>)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-project_files/figure-html/cell-9-output-1.png" width="747" height="556" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure 5.</p>
+<p>This figure shows that under-5 mortality has a much stronger negative standardized effect on life expectancy compared to adolescent fertility.</p>
+<hr>
+</section>
+<section id="effects-by-income-group" class="level4">
+<h4 class="anchored" data-anchor-id="effects-by-income-group">Effects by Income Group</h4>
+<p>Finally, we stratified the analysis by income groups.</p>
+<div id="c75eb6bf" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis on whether the effect sizes differ across income groups </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'population_panel_clean.csv'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.rename(columns<span class="op">=</span>{</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lifeexp"</span>: <span class="st">"LifeExpectancy"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"u5mort"</span>: <span class="st">"U5Mortality"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"adofert"</span>: <span class="st">"AdoleFertility"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>group_coefs <span class="op">=</span> []</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by income_group and run standardized regression</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> income, group <span class="kw">in</span> df.groupby(<span class="st">"income_group"</span>):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> group[[<span class="st">"U5Mortality"</span>, <span class="st">"AdoleFertility"</span>]]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> group[<span class="st">"LifeExpectancy"</span>]</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    scaler_X <span class="op">=</span> StandardScaler()</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    scaler_y <span class="op">=</span> StandardScaler()</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    X_scaled <span class="op">=</span> scaler_X.fit_transform(X)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    y_scaled <span class="op">=</span> scaler_y.fit_transform(y.values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)).flatten()</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LinearRegression()</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    model.fit(X_scaled, y_scaled)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    group_coefs.append({</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Income Group"</span>: income,</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Under-5 Mortality Coef"</span>: model.coef_[<span class="dv">0</span>],</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Adolescent Fertility Coef"</span>: model.coef_[<span class="dv">1</span>]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>coefs_df <span class="op">=</span> pd.DataFrame(group_coefs)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>coefs_melted <span class="op">=</span> coefs_df.melt(id_vars<span class="op">=</span><span class="st">"Income Group"</span>, </span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                             value_vars<span class="op">=</span>[<span class="st">"Under-5 Mortality Coef"</span>, <span class="st">"Adolescent Fertility Coef"</span>],</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                             var_name<span class="op">=</span><span class="st">"Indicator"</span>, </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                             value_name<span class="op">=</span><span class="st">"Standardized Coefficient"</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">"whitegrid"</span>, font_scale<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>coefs_melted, x<span class="op">=</span><span class="st">"Income Group"</span>, y<span class="op">=</span><span class="st">"Standardized Coefficient"</span>, hue<span class="op">=</span><span class="st">"Indicator"</span>, palette<span class="op">=</span>[<span class="st">"blue"</span>, <span class="st">"pink"</span>])</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Standardized Coefficients by Income Group: U5 Mortality vs Adolescent Fertility"</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Standardized Coefficient"</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Income Group"</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Standardized Coefficients Table:"</span>)</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coefs_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="final-project_files/figure-html/cell-10-output-1.png" width="937" height="554" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Standardized Coefficients Table:
+          Income Group  Under-5 Mortality Coef  Adolescent Fertility Coef
+0          High income               -0.575164                  -0.341895
+1           Low income               -0.923888                  -0.047629
+2  Lower middle income               -0.865206                  -0.108201
+3  Upper middle income               -0.850363                  -0.085107</code></pre>
+</div>
+</div>
+<p>Figure 6.</p>
+<p>This figure highlights that under-5 mortality consistently shows a strong negative relationship with life expectancy across all income groups, while the effect of adolescent fertility is weaker and varies by economic context.</p>
+<hr>
+<p>Which Factor Has Stronger Influence by Income Group:</p>
+<div id="5b4f8393" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new column that tells which factor is stronger</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>coefs_df[<span class="st">'Stronger Predictor'</span>] <span class="op">=</span> coefs_df.<span class="bu">apply</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> row: <span class="st">'Under-5 Mortality'</span> <span class="cf">if</span> <span class="bu">abs</span>(row[<span class="st">'Under-5 Mortality Coef'</span>]) <span class="op">&gt;</span> <span class="bu">abs</span>(row[<span class="st">'Adolescent Fertility Coef'</span>]) <span class="cf">else</span> <span class="st">'Adolescent Fertility'</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Which Factor Has Stronger Influence by Income Group:"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coefs_df[[<span class="st">'Income Group'</span>, <span class="st">'Stronger Predictor'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Which Factor Has Stronger Influence by Income Group:
+          Income Group Stronger Predictor
+0          High income  Under-5 Mortality
+1           Low income  Under-5 Mortality
+2  Lower middle income  Under-5 Mortality
+3  Upper middle income  Under-5 Mortality</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="results-and-discussion" class="level1">
+<h1>Results and Discussion</h1>
+<p>The results from the standardized regressions confirmed that under-5 mortality is a strong and consistent predictor of life expectancy across all income groups. The standardized coefficient for under-5 mortality was much larger in magnitude than that for adolescent fertility, suggesting that reductions in child mortality play a more powerful role in increasing life expectancy.</p>
+<p>When stratified by income group, the analysis showed that the negative relationship between under-5 mortality and life expectancy was stronger for low and middle-income countries compared to high-income countries. In contrast, the relationship between adolescent fertility and life expectancy was weaker overall, and its strength varied more noticeably across different income groups.</p>
+<p>These patterns suggest that improvements in child health indicators, especially reductions in mortality under age five, have contributed significantly to gains in longevity, particularly in countries with limited resources. Meanwhile, adolescent fertility has a comparatively smaller, but still important, impact, with its influence more visible in countries where early childbearing remains prevalent.</p>
+<p>The findings underline the importance of early-life health interventions. Reducing child mortality consistently leads to longer life expectancy across all contexts, while reducing adolescent fertility may provide additional gains depending on the socio-economic environment.</p>
+<hr>
+<p><strong>Reflection on Findings and Limitations:</strong></p>
+<p>While the findings are robust and align with public health theory, several limitations should be acknowledged.</p>
+<p>First, the data are observational, meaning causal relationships cannot be definitively established.</p>
+<p>Second, the analysis focuses on two early-life factors, but other important variables (such as maternal education, access to sanitation, or broader healthcare infrastructure) were not included.</p>
+<p>Third, although standardization improved comparability, some regional nuances may still be masked when grouping countries by income level only.</p>
+<p>Future research could address these limitations by incorporating more covariates and exploring region-specific trends.</p>
+<hr>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>This study demonstrates the critical role that early-life conditions, particularly child health and adolescent reproductive health, play in shaping population longevity.</p>
+<p>By examining global trends over six decades and across income groups, we find that reducing under-5 mortality has a universally strong positive effect on life expectancy, while reducing adolescent fertility contributes more variably depending on a country’s economic context.</p>
+<p>These results emphasize that public health investments targeting maternal and child health remain essential strategies for improving life expectancy worldwide. For low and middle-income countries, efforts to lower both child mortality and adolescent fertility can have substantial long-term benefits.</p>
+<p>In high-income countries, continued focus on early-childhood care is crucial to sustaining gains, even if the marginal effects are smaller.</p>
+<p>Ultimately, fostering equitable health outcomes from an early age is a cornerstone for sustainable societal development and health equity around the globe.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
